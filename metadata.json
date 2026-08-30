@@ -1,0 +1,6 @@
+{
+  "name": "Scheme-Setu",
+  "description": "An independent AI assistant that matches Indian citizens to government welfare schemes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
