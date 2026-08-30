@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scheme-Setu — Government Welfare Scheme Matcher</title>
   <meta name="description" content="An independent AI assistant that matches Indian citizens to government welfare schemes." />
-  <meta property="og:title" content="Scheme-Setu — Government Welfare Scheme Matcher" />
+  <meta property="og:title" content="SchemeSetu — Government Welfare Scheme Matcher" />
   <meta property="og:description" content="An independent AI assistant that matches Indian citizens to government welfare schemes." />
   <meta property="og:type" content="website" />
 
@@ -283,6 +283,8 @@
       align-items: center;
       gap: 10px;
       cursor: pointer;
+      flex-shrink: 0;
+      margin-right: 40px;
     }
     .logo-badge {
       width: 36px;
@@ -315,6 +317,7 @@
       font-size: 11px;
       color: var(--text-secondary);
       letter-spacing: 0.02em;
+      white-space: nowrap;
     }
 
     /* Desktop Navigation */
@@ -346,6 +349,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-shrink: 0;
     }
 
     /* Buttons */
@@ -362,12 +366,15 @@
       border: 1px solid transparent;
       cursor: pointer;
       transition: all 0.18s ease;
-      min-height: 48px;
+      height: 44px;
       touch-action: manipulation;
+      flex-shrink: 0;
     }
     .btn-pill {
       border-radius: 9999px;
       padding: 10px 24px;
+      height: 44px;
+      min-height: 44px;
     }
     .btn-primary {
       background-color: var(--primary);
@@ -449,6 +456,7 @@
       width: 44px;
       height: 44px;
       min-height: 44px;
+      flex-shrink: 0;
       border-radius: 50%;
       background-color: var(--surface-container);
       border: 1px solid var(--outline);
@@ -1957,7 +1965,30 @@
       text-align: center;
       padding: 8px 10px;
     }
-  </style>
+  
+    /* Embedded n8n Form */
+    .n8n-form-embed-wrap {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+      background: var(--surface);
+    }
+    #n8n-form-iframe {
+      display: block;
+      width: 100%;
+      min-height: 980px;
+      height: 1200px;
+      border: 0;
+      background: transparent;
+    }
+    @media (max-width: 767px) {
+      #n8n-form-iframe {
+        min-height: 1100px;
+        height: 1350px;
+      }
+    }
+    
+</style>
 </head>
 <body>
 
@@ -1986,9 +2017,9 @@
   <header class="site-header" id="site-header">
     <div class="container header-inner">
       <div class="brand-logo" id="brand-logo" onclick="switchView('home')" data-dynamic-content="true">
-        <div class="logo-badge">S</div>
+        <img src="assets/SchemeSetuLogo.png" height="50" width="50" alt="logo">
         <div class="brand-text">
-          <div class="brand-wordmark">SCHEME-<span>SETU</span></div>
+          <div class="brand-wordmark">Scheme<span>Setu</span></div>
           <div class="brand-tagline" data-i18n="brandTagline">Sarkari Yojanaon Ka Ek Setu</div>
         </div>
       </div>
@@ -2140,230 +2171,29 @@
   </main>
 
   <!-- =========================================================================
-       VIEW 2: INTAKE FORM VIEW
+       VIEW 2: N8N FORM VIEW
        ========================================================================= -->
   <main class="view-container" id="view-form">
     <div class="container" style="padding-top: 30px; padding-bottom: 60px;">
-      <div style="max-width: 720px; margin: 0 auto;">
-        
-        <!-- Visual Stepper Progress Bar -->
-        <div class="stepper">
-          <div class="step-item active" id="step-1">
-            <div class="step-circle">1</div>
-            <span class="step-label" data-i18n="stepPersonal">Personal</span>
-          </div>
-          <div class="step-item" id="step-2">
-            <div class="step-circle">2</div>
-            <span class="step-label" data-i18n="stepCategory">Category</span>
-          </div>
-          <div class="step-item" id="step-3">
-            <div class="step-circle">3</div>
-            <span class="step-label" data-i18n="stepIncome">Income</span>
-          </div>
-          <div class="step-item" id="step-4">
-            <div class="step-circle">4</div>
-            <span class="step-label" data-i18n="stepLocation">Location</span>
-          </div>
-        </div>
-
-        <!-- Form Card -->
-        <div class="card">
-          <div style="text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--outline);">
+      <div style="max-width: 980px; margin: 0 auto;">
+        <div class="card" style="padding: 18px;">
+          <div style="text-align: center; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--outline);">
             <h1 class="serif-heading" style="font-size: 26px;" data-i18n="formTitle">Eligibility Assessment Form</h1>
             <p class="text-sm" style="color: var(--text-secondary); margin-top: 4px;" data-i18n="formSubtext">
               Provide accurate details to match with tailored Central &amp; State government schemes.
             </p>
           </div>
 
-          <form id="intake-form" novalidate onsubmit="handleFormSubmit(event)">
-            
-            <!-- STEP 1: Personal Details -->
-            <div style="margin-bottom: 28px;">
-              <h2 class="serif-heading" style="font-size: 18px; margin-bottom: 16px; color: var(--primary);" data-i18n="step1Heading">
-                1. Personal Information
-              </h2>
-
-              <!-- 1. Full Name -->
-              <div class="form-group" id="group-name">
-                <label class="form-label label-tag" for="field-name" data-i18n="fieldNameLabel">Full Name *</label>
-                <input type="text" id="field-name" class="form-control" placeholder="Enter your full name" data-i18n-placeholder="namePlaceholder" required />
-                <div class="form-error" id="error-name" data-i18n="errorName">Please enter your name.</div>
-              </div>
-
-              <!-- 2. Age & 3. Gender -->
-              <div style="display: grid; grid-template-columns: 1fr; gap: 16px;">
-                <div class="form-group" id="group-age">
-                  <label class="form-label label-tag" for="field-age" data-i18n="fieldAgeLabel">Age (in years) *</label>
-                  <input type="number" id="field-age" class="form-control" placeholder="e.g. 32" data-i18n-placeholder="agePlaceholder" min="1" max="110" required />
-                  <div class="form-error" id="error-age" data-i18n="errorAge">Please enter a valid age between 1 and 110.</div>
-                </div>
-
-                <div class="form-group" id="group-gender">
-                  <label class="form-label label-tag" data-i18n="fieldGenderLabel">Gender *</label>
-                  <div class="radio-group">
-                    <div class="radio-option">
-                      <input type="radio" name="gender" id="gender-female" value="Female" />
-                      <label for="gender-female" data-i18n="genderFemale">Female</label>
-                    </div>
-                    <div class="radio-option">
-                      <input type="radio" name="gender" id="gender-male" value="Male" />
-                      <label for="gender-male" data-i18n="genderMale">Male</label>
-                    </div>
-                    <div class="radio-option">
-                      <input type="radio" name="gender" id="gender-other" value="Other" />
-                      <label for="gender-other" data-i18n="genderOther">Other</label>
-                    </div>
-                  </div>
-                  <div class="form-error" id="error-gender" data-i18n="errorGender">Please select your gender.</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- STEP 2: Category & Occupation -->
-            <div style="margin-bottom: 28px; padding-top: 16px; border-top: 1px solid var(--outline);">
-              <h2 class="serif-heading" style="font-size: 18px; margin-bottom: 16px; color: var(--primary);" data-i18n="step2Heading">
-                2. Social Category &amp; Occupation
-              </h2>
-
-              <div style="display: grid; grid-template-columns: 1fr; gap: 16px;">
-                <!-- 4. Category -->
-                <div class="form-group" id="group-category">
-                  <label class="form-label label-tag" for="field-category" data-i18n="fieldCategoryLabel">Social Category *</label>
-                  <select id="field-category" class="form-control" required>
-                    <option value="" data-i18n="selectCategoryPlaceholder">Select Social Category...</option>
-                    <option value="General" data-i18n="catGeneral">General</option>
-                    <option value="OBC" data-i18n="catOBC">OBC (Other Backward Classes)</option>
-                    <option value="SC" data-i18n="catSC">SC (Scheduled Caste)</option>
-                    <option value="ST" data-i18n="catST">ST (Scheduled Tribe)</option>
-                    <option value="EWS" data-i18n="catEWS">EWS (Economically Weaker Section)</option>
-                    <option value="Minority" data-i18n="catMinority">Minority Community</option>
-                  </select>
-                  <div class="form-error" id="error-category" data-i18n="errorCategory">Please select your category.</div>
-                </div>
-
-                <!-- 5. Occupation -->
-                <div class="form-group" id="group-occupation">
-                  <label class="form-label label-tag" for="field-occupation" data-i18n="fieldOccupationLabel">Primary Occupation *</label>
-                  <select id="field-occupation" class="form-control" required>
-                    <option value="" data-i18n="selectOccupationPlaceholder">Select Occupation...</option>
-                    <option value="Student" data-i18n="occStudent">Student</option>
-                    <option value="Farmer" data-i18n="occFarmer">Farmer / Agriculture</option>
-                    <option value="Unemployed" data-i18n="occUnemployed">Unemployed / Job Seeker</option>
-                    <option value="Salaried" data-i18n="occSalaried">Salaried (Private / Public)</option>
-                    <option value="Self-employed" data-i18n="occSelfEmployed">Self-employed / Small Business</option>
-                    <option value="Homemaker" data-i18n="occHomemaker">Homemaker</option>
-                    <option value="Senior Citizen" data-i18n="occSenior">Senior Citizen / Retired</option>
-                  </select>
-                  <div class="form-error" id="error-occupation" data-i18n="errorOccupation">Please select your occupation.</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- STEP 3: Income -->
-            <div style="margin-bottom: 28px; padding-top: 16px; border-top: 1px solid var(--outline);">
-              <h2 class="serif-heading" style="font-size: 18px; margin-bottom: 16px; color: var(--primary);" data-i18n="step3Heading">
-                3. Annual Family Income
-              </h2>
-
-              <!-- 6. Income Range -->
-              <div class="form-group" id="group-income">
-                <label class="form-label label-tag" for="field-income" data-i18n="fieldIncomeLabel">Annual Family Income *</label>
-                <select id="field-income" class="form-control" required>
-                  <option value="" data-i18n="selectIncomePlaceholder">Select Annual Income Range...</option>
-                  <option value="<1L" data-i18n="incUnder1L">Less than ₹1,00,000 (BPL / Low Income)</option>
-                  <option value="1-3L" data-i18n="inc1to3L">₹1,00,000 - ₹3,00,000</option>
-                  <option value="3-5L" data-i18n="inc3to5L">₹3,00,000 - ₹5,00,000</option>
-                  <option value="5-8L" data-i18n="inc5to8L">₹5,00,000 - ₹8,00,000</option>
-                  <option value=">8L" data-i18n="incAbove8L">Above ₹8,00,000</option>
-                </select>
-                <div class="form-error" id="error-income" data-i18n="errorIncome">Please select your income range.</div>
-              </div>
-            </div>
-
-            <!-- STEP 4: Location -->
-            <div style="margin-bottom: 28px; padding-top: 16px; border-top: 1px solid var(--outline);">
-              <h2 class="serif-heading" style="font-size: 18px; margin-bottom: 16px; color: var(--primary);" data-i18n="step4Heading">
-                4. Location &amp; Area
-              </h2>
-
-              <!-- 7. State -->
-              <div class="form-group" id="group-state">
-                <label class="form-label label-tag" for="field-state" data-i18n="fieldStateLabel">State / Union Territory *</label>
-                <select id="field-state" class="form-control" required>
-                  <option value="" data-i18n="selectStatePlaceholder">Select State or UT...</option>
-                  <option value="Andhra Pradesh" data-i18n="stateAP">Andhra Pradesh</option>
-                  <option value="Arunachal Pradesh" data-i18n="stateAR">Arunachal Pradesh</option>
-                  <option value="Assam" data-i18n="stateAS">Assam</option>
-                  <option value="Bihar" data-i18n="stateBR">Bihar</option>
-                  <option value="Chhattisgarh" data-i18n="stateCG">Chhattisgarh</option>
-                  <option value="Goa" data-i18n="stateGA">Goa</option>
-                  <option value="Gujarat" data-i18n="stateGJ">Gujarat</option>
-                  <option value="Haryana" data-i18n="stateHR">Haryana</option>
-                  <option value="Himachal Pradesh" data-i18n="stateHP">Himachal Pradesh</option>
-                  <option value="Jharkhand" data-i18n="stateJH">Jharkhand</option>
-                  <option value="Karnataka" data-i18n="stateKA">Karnataka</option>
-                  <option value="Kerala" data-i18n="stateKL">Kerala</option>
-                  <option value="Madhya Pradesh" data-i18n="stateMP">Madhya Pradesh</option>
-                  <option value="Maharashtra" data-i18n="stateMH">Maharashtra</option>
-                  <option value="Manipur" data-i18n="stateMN">Manipur</option>
-                  <option value="Meghalaya" data-i18n="stateML">Meghalaya</option>
-                  <option value="Mizoram" data-i18n="stateMZ">Mizoram</option>
-                  <option value="Nagaland" data-i18n="stateNL">Nagaland</option>
-                  <option value="Odisha" data-i18n="stateOD">Odisha</option>
-                  <option value="Punjab" data-i18n="statePB">Punjab</option>
-                  <option value="Rajasthan" data-i18n="stateRJ">Rajasthan</option>
-                  <option value="Sikkim" data-i18n="stateSK">Sikkim</option>
-                  <option value="Tamil Nadu" data-i18n="stateTN">Tamil Nadu</option>
-                  <option value="Telangana" data-i18n="stateTS">Telangana</option>
-                  <option value="Tripura" data-i18n="stateTR">Tripura</option>
-                  <option value="Uttar Pradesh" data-i18n="stateUP">Uttar Pradesh</option>
-                  <option value="Uttarakhand" data-i18n="stateUK">Uttarakhand</option>
-                  <option value="West Bengal" data-i18n="stateWB">West Bengal</option>
-                  <option value="Andaman and Nicobar" data-i18n="stateAN">Andaman and Nicobar Islands</option>
-                  <option value="Chandigarh" data-i18n="stateCH">Chandigarh</option>
-                  <option value="Delhi" data-i18n="stateDL">Delhi (NCT)</option>
-                  <option value="Jammu and Kashmir" data-i18n="stateJK">Jammu and Kashmir</option>
-                  <option value="Ladakh" data-i18n="stateLA">Ladakh</option>
-                  <option value="Puducherry" data-i18n="statePY">Puducherry</option>
-                </select>
-                <div class="form-error" id="error-state" data-i18n="errorState">Please select your state.</div>
-              </div>
-
-              <!-- 8. Area Type -->
-              <div class="form-group" id="group-area">
-                <label class="form-label label-tag" data-i18n="fieldAreaLabel">Area Type *</label>
-                <div class="radio-group" style="grid-template-columns: 1fr 1fr;">
-                  <div class="radio-option">
-                    <input type="radio" name="area_type" id="area-rural" value="Rural" />
-                    <label for="area-rural" data-i18n="areaRural">🌾 Rural</label>
-                  </div>
-                  <div class="radio-option">
-                    <input type="radio" name="area_type" id="area-urban" value="Urban" />
-                    <label for="area-urban" data-i18n="areaUrban">🏙️ Urban</label>
-                  </div>
-                </div>
-                <div class="form-error" id="error-area" data-i18n="errorArea">Please select your area type.</div>
-              </div>
-            </div>
-
-            <!-- Required Consent Checkbox -->
-            <div style="padding-top: 16px; border-top: 1px solid var(--outline); margin-bottom: 24px;">
-              <div style="display: flex; align-items: flex-start; gap: 10px;">
-                <input type="checkbox" id="consent-check" style="width: 20px; height: 20px; margin-top: 3px; accent-color: var(--primary); cursor: pointer;" onchange="validateConsentState()" />
-                <label for="consent-check" class="text-sm" style="color: var(--text-secondary); cursor: pointer;" data-i18n="consentLabel">
-                  I agree my details will be shared with the automated matching system and may be used to send WhatsApp updates.
-                </label>
-              </div>
-              <div class="form-error" id="error-consent" style="margin-top: 6px;" data-i18n="errorConsent">
-                You must accept the consent declaration to proceed.
-              </div>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary" id="find-schemes-btn" style="width: 100%; height: 52px; font-size: 16px;" data-i18n="findSchemesBtn">
-              Find My Schemes →
-            </button>
-          </form>
+          <div class="n8n-form-embed-wrap">
+            <iframe
+              id="n8n-form-iframe"
+              src="https://satvikn8n.dpdns.org/form-test/dbc72d41-fa7c-45cc-9b10-a21491bbef74"
+              title="Scheme-Setu Eligibility Assessment Form"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="clipboard-write; fullscreen"
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>
@@ -2424,8 +2254,8 @@
       <section class="results-header">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 14px;">
           <div>
-            <h1 class="serif-heading section-title" id="results-heading">
-              <span data-i18n="resultsHeadingPrefix">Schemes matched for</span> <span style="color: var(--primary);" id="results-user-name" data-dynamic-content="true">Citizen</span>
+            <h1 class="serif-heading section-title" id="results-heading" data-i18n="yourSchemesHeading">
+              Your schemes
             </h1>
             <div class="profile-chips-row" id="results-profile-chips" data-dynamic-content="true">
               <!-- Dynamically populated chips -->
@@ -2438,9 +2268,6 @@
                 <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.983.54 1.761.794 2.796.794 3.18 0 5.767-2.587 5.768-5.766.001-3.182-2.585-5.78-5.768-5.78zm0-2.172c4.379 0 7.931 3.552 7.931 7.938 0 4.385-3.552 7.938-7.931 7.938-1.393 0-2.706-.367-3.85-1.009l-4.181 1.063 1.111-4.062c-.733-1.206-1.149-2.617-1.149-4.12 0-4.386 3.552-7.938 7.931-7.938z"/>
               </svg>
               <span data-i18n="btnShareResults">Share Results</span>
-            </button>
-            <button class="btn btn-outline" style="min-height: 40px; padding: 6px 16px; font-size: 13px;" onclick="switchView('form')" data-i18n="btnEditProfile">
-              ✏️ Edit Profile
             </button>
           </div>
         </div>
@@ -2862,7 +2689,7 @@
     // --------------------------------------------------------------------------
     // Backend webhook configuration
     // --------------------------------------------------------------------------
-    const N8N_WEBHOOK_URL = ""; // TODO: paste your n8n Production webhook URL here
+    const N8N_WEBHOOK_URL = ""; // Data submission is handled directly by the embedded n8n form.
 
     // Target placeholder WhatsApp phone number (clearly marked for dev replacement)
     // DEVELOPER NOTE: Replace '919876543210' with your official verified WhatsApp helpline number
@@ -3191,9 +3018,8 @@
         loadingSubtext: "Analyzing your profile against active Central & State government welfare databases.",
         loadingFallbackText: "Taking longer than usual — we'll send your results on WhatsApp instead.",
         loadingFallbackBtn: "💬 Receive on WhatsApp",
-        resultsHeadingPrefix: "Schemes matched for",
+        yourSchemesHeading: "Your schemes",
         btnShareResults: "Share Results",
-        btnEditProfile: "✏️ Edit Profile",
         searchPlaceholder: "Search scheme by name or benefit...",
         filterScopeLabel: "Scope:",
         filterAll: "All",
@@ -3435,7 +3261,7 @@
         loadingSubtext: "सक्रिय केंद्रीय व राज्य सरकारी कल्याणकारी डेटाबेस से आपके प्रोफाइल का विश्लेषण किया जा रहा है।",
         loadingFallbackText: "सामान्य से अधिक समय लग रहा है — हम आपके परिणाम व्हाट्सएप पर भेज देंगे।",
         loadingFallbackBtn: "💬 व्हाट्सएप पर प्राप्त करें",
-        resultsHeadingPrefix: "के लिए अनुशंसित सरकारी योजनाएं:",
+        yourSchemesHeading: "आपकी योजनाएं",
         btnShareResults: "परिणाम साझा करें",
         btnEditProfile: "✏️ प्रोफाइल संपादित करें",
         searchPlaceholder: "योजना का नाम या लाभ खोजें...",
@@ -3678,7 +3504,7 @@
       category: "OBC",
       occupation: "Farmer",
       income_range: "1-3L",
-      state: "Maharashtra",
+      state: "Uttar Pradesh",
       area_type: "Rural"
     };
 
@@ -3806,122 +3632,7 @@
 
     function handleFormSubmit(event) {
       event.preventDefault();
-
-      let isValid = true;
-
-      // 1. Name
-      const nameInput = document.getElementById('field-name');
-      const groupName = document.getElementById('group-name');
-      if (!nameInput.value.trim()) {
-        groupName.classList.add('has-error');
-        isValid = false;
-      } else {
-        groupName.classList.remove('has-error');
-      }
-
-      // 2. Age
-      const ageInput = document.getElementById('field-age');
-      const groupAge = document.getElementById('group-age');
-      const ageVal = parseInt(ageInput.value);
-      if (isNaN(ageVal) || ageVal < 1 || ageVal > 110) {
-        groupAge.classList.add('has-error');
-        isValid = false;
-      } else {
-        groupAge.classList.remove('has-error');
-      }
-
-      // 3. Gender
-      const genderChecked = document.querySelector('input[name="gender"]:checked');
-      const groupGender = document.getElementById('group-gender');
-      if (!genderChecked) {
-        groupGender.classList.add('has-error');
-        isValid = false;
-      } else {
-        groupGender.classList.remove('has-error');
-      }
-
-      // 4. Category
-      const catSelect = document.getElementById('field-category');
-      const groupCat = document.getElementById('group-category');
-      if (!catSelect.value) {
-        groupCat.classList.add('has-error');
-        isValid = false;
-      } else {
-        groupCat.classList.remove('has-error');
-      }
-
-      // 5. Occupation
-      const occSelect = document.getElementById('field-occupation');
-      const groupOcc = document.getElementById('group-occupation');
-      if (!occSelect.value) {
-        groupOcc.classList.add('has-error');
-        isValid = false;
-      } else {
-        groupOcc.classList.remove('has-error');
-      }
-
-      // 6. Income
-      const incomeSelect = document.getElementById('field-income');
-      const groupIncome = document.getElementById('group-income');
-      if (!incomeSelect.value) {
-        groupIncome.classList.add('has-error');
-        isValid = false;
-      } else {
-        groupIncome.classList.remove('has-error');
-      }
-
-      // 7. State
-      const stateSelect = document.getElementById('field-state');
-      const groupState = document.getElementById('group-state');
-      if (!stateSelect.value) {
-        groupState.classList.add('has-error');
-        isValid = false;
-      } else {
-        groupState.classList.remove('has-error');
-      }
-
-      // 8. Area Type
-      const areaChecked = document.querySelector('input[name="area_type"]:checked');
-      const groupArea = document.getElementById('group-area');
-      if (!areaChecked) {
-        groupArea.classList.add('has-error');
-        isValid = false;
-      } else {
-        groupArea.classList.remove('has-error');
-      }
-
-      // Consent Checkbox
-      const consentChecked = document.getElementById('consent-check').checked;
-      const errorConsent = document.getElementById('error-consent');
-      if (!consentChecked) {
-        errorConsent.style.display = 'block';
-        isValid = false;
-      } else {
-        errorConsent.style.display = 'none';
-      }
-
-      if (!isValid) {
-        const firstError = document.querySelector('.has-error, #error-consent:not([style*="display: none"])');
-        if (firstError) {
-          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        return;
-      }
-
-      // Package payload
-      currentFormData = {
-        name: nameInput.value.trim(),
-        age: ageVal,
-        gender: genderChecked.value,
-        category: catSelect.value,
-        occupation: occSelect.value,
-        income_range: incomeSelect.value,
-        state: stateSelect.value,
-        area_type: areaChecked.value
-      };
-
-      // Trigger AI Matching flow
-      startMatchingFlow(currentFormData);
+      switchView('form');
     }
 
     // --------------------------------------------------------------------------
@@ -4046,10 +3757,7 @@
     ];
 
     function renderResultsView(animationType = 'filter') {
-      // 1. Update Heading and Profile Summary
-      const userNameEl = document.getElementById('results-user-name');
-      if (userNameEl) userNameEl.textContent = currentFormData.name || 'Citizen';
-
+      // 1. Update Profile Summary (heading is now generic, no name display)
       const chipsContainer = document.getElementById('results-profile-chips');
       if (chipsContainer) {
         chipsContainer.innerHTML = `
