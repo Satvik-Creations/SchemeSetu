@@ -1,0 +1,1522 @@
+{
+  "name": "Scheme-Setu",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1828969555,
+          "mode": "list",
+          "cachedResultName": "Women and Child",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=1828969555"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -1584,
+        704
+      ],
+      "id": "14a2cc52-b549-4eee-b693-6ab3b660934d",
+      "name": "Women & Child",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Find the most suitable government scheme(s) for this user request:\n\n{{ $json.body.entry[0].changes[0].value.messages[0].text.body }}\n\nSearch the connected spreadsheet and match the request against the available scheme data. Prioritize the closest match to ALL criteria mentioned by the user.\nAlways Provide with Apply Links from the google sheet.",
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "You are SchemeSetu, an Indian Government Scheme matching agent.\n\nYour ONLY job is to find the most suitable schemes from the connected spreadsheet based on the user's request.\n\nRULES:\n- The spreadsheet is the ONLY source of truth.\n- ALWAYS use the spreadsheet tool before recommending a scheme.\n- Use the correct category/sheet based on the user's request.\n- Match ALL important user criteria: age, gender, BPL/poverty status, occupation, student status, state, beneficiary type, purpose, etc.\n- Rank results by how closely they match the user's complete profile.\n- Do NOT recommend generic or loosely related schemes.\n- Do NOT invent, guess, or use outside knowledge.\n- If no scheme sufficiently matches, say so instead of forcing a recommendation.\n- Never change scheme names, eligibility, benefits, URLs, or other sheet data.\n- Use existing English fields for English users and existing Hindi fields for Hindi/Hinglish users.\n- Do NOT create or mention fields/columns that do not exist in the sheet.\n\nRESPONSE:\nStart with:\n\"Welcome to SchemeSetu! 🇮🇳\nSchemeSetu में आपका स्वागत है! 🇮🇳\"\n\nThen give the BEST matching scheme first.\n\nFor each result, show only useful information available in the sheet:\n• Scheme Name\n• Why it matches\n• Key eligibility/details\n• Benefits\n• Official Website\n\nKeep the response short, clear, and WhatsApp-friendly.\nDo not use Markdown headings like # or ### and do not use **bold**."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -1472,
+        480
+      ],
+      "id": "650c23b2-de93-44f0-9f3e-43fc1af42fee",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body?.entry?.[0]?.changes?.[0]?.value?.messages?.[0]?.from || 'schemesetu-user' }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -1712,
+        704
+      ],
+      "id": "e60551e0-b715-447c-9b50-9dbaa0ab3e25",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1001,
+          "mode": "list",
+          "cachedResultName": "Agriculture",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=1001"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -1456,
+        704
+      ],
+      "id": "95c65870-fd38-464a-ba91-14588bce8414",
+      "name": "Agriculture",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1963442408,
+          "mode": "list",
+          "cachedResultName": "Health",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=1963442408"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -1328,
+        704
+      ],
+      "id": "ab2f9f9b-6e5b-465d-a4ac-94a3423ceec9",
+      "name": "Health",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 798448457,
+          "mode": "list",
+          "cachedResultName": "Employment",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=798448457"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -1200,
+        704
+      ],
+      "id": "cd4c5332-3306-4549-bb21-2617150e512d",
+      "name": "Employment",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1590598927,
+          "mode": "list",
+          "cachedResultName": "Education",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=1590598927"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -1072,
+        704
+      ],
+      "id": "8a97aa6e-3e7f-462f-9c64-c2e586edd758",
+      "name": "Education",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 111546358,
+          "mode": "list",
+          "cachedResultName": "Rural Development",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=111546358"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -944,
+        704
+      ],
+      "id": "13efd093-0acb-46e6-b5fe-8394d0f809c4",
+      "name": "Rural Development",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 260326618,
+          "mode": "list",
+          "cachedResultName": "Finance",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=260326618"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -816,
+        704
+      ],
+      "id": "c04ebaa9-4e50-4efa-a8e6-4fc5fdec9e2d",
+      "name": "Finance",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1828969555,
+          "mode": "list",
+          "cachedResultName": "Women and Child",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=1828969555"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -1584,
+        1328
+      ],
+      "id": "3dd05c69-47ed-49a4-81ca-943ad3c28e98",
+      "name": "Women & Child1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1001,
+          "mode": "list",
+          "cachedResultName": "Agriculture",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=1001"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -1456,
+        1328
+      ],
+      "id": "9aa01ab5-d1a1-4406-892c-0fd96e3c7211",
+      "name": "Agriculture1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 798448457,
+          "mode": "list",
+          "cachedResultName": "Employment",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=798448457"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -1712,
+        1328
+      ],
+      "id": "6923279b-40c0-44ea-928e-c4aa05af07cb",
+      "name": "Employment1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1590598927,
+          "mode": "list",
+          "cachedResultName": "Education",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=1590598927"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -1328,
+        1328
+      ],
+      "id": "6a36b63c-a3c5-4a53-a770-93ca8a2687f7",
+      "name": "Education1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 111546358,
+          "mode": "list",
+          "cachedResultName": "Rural Development",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=111546358"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -1200,
+        1328
+      ],
+      "id": "eb7eef0e-9b8a-4d2f-9ff3-414299406395",
+      "name": "Rural Development1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Find the best matching government schemes for this applicant.\n\nAge: {{$json[\"and your age is\"]}}\nGender: {{ $json['Tell us about yourself, you are a...'] }}\nState: {{$json[\"Please enter your state\"]}}\nArea: {{ $json['Please select your area of residence'] }}\nCategory: {{$json[\"You belong to...\"]}}\nPwD: {{ $json['Do you identify as a person with a disability?'] }}\nMinority: {{ $json['Do you belong to minority?'] }}\nStudent: {{$json[\"Are you a student?\"]}}\n\nUse the relevant Google Sheet tools and return the strongest eligible matches.\nReturn the output in plain text.",
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "You are SchemeSetu's Government Scheme Matching Agent.\n\nUse ONLY the connected Google Sheets to find schemes.\n\n1. Read the applicant's submitted details.\n2. Identify relevant categories.\n3. Search the relevant Google Sheets.\n4. Compare scheme eligibility with the applicant.\n5. Rank the best matches.\n6. Never invent scheme names, eligibility, benefits or links.\n7. Do not assume eligibility when information is missing.\n8. Search multiple relevant sheets when necessary.\n9. Avoid duplicate schemes.\n\nReturn up to 5 strongest matches.\n\nFor each match provide:\n- Scheme Name\n- Why it matches\n- Eligibility matched\n- Main benefit\n- Status: Strong Match / Possible Match / Needs Verification\n- Application link, only if available in the sheet.\n\nIf no suitable scheme is found, say:\n\"No strong scheme match was found based on the submitted information.\"\n\nDo not reveal internal tools or reasoning."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -1600,
+        1104
+      ],
+      "id": "eeb2dd33-3af1-4821-b9ac-2409a3575fd0",
+      "name": "Scheme Matcher"
+    },
+    {
+      "parameters": {
+        "formTitle": "SchemeSetu    ",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Tell us about yourself, you are a...",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Male"
+                  },
+                  {
+                    "option": "Female"
+                  },
+                  {
+                    "option": "Transgender"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "and your age is",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "1"
+                  },
+                  {
+                    "option": "2"
+                  },
+                  {
+                    "option": "3"
+                  },
+                  {
+                    "option": "4"
+                  },
+                  {
+                    "option": "5"
+                  },
+                  {
+                    "option": "6"
+                  },
+                  {
+                    "option": "7"
+                  },
+                  {
+                    "option": "8"
+                  },
+                  {
+                    "option": "9"
+                  },
+                  {
+                    "option": "10"
+                  },
+                  {
+                    "option": "11"
+                  },
+                  {
+                    "option": "12"
+                  },
+                  {
+                    "option": "13"
+                  },
+                  {
+                    "option": "14"
+                  },
+                  {
+                    "option": "15"
+                  },
+                  {
+                    "option": "16"
+                  },
+                  {
+                    "option": "17"
+                  },
+                  {
+                    "option": "18"
+                  },
+                  {
+                    "option": "19"
+                  },
+                  {
+                    "option": "20"
+                  },
+                  {
+                    "option": "21"
+                  },
+                  {
+                    "option": "22"
+                  },
+                  {
+                    "option": "23"
+                  },
+                  {
+                    "option": "24"
+                  },
+                  {
+                    "option": "25"
+                  },
+                  {
+                    "option": "26"
+                  },
+                  {
+                    "option": "27"
+                  },
+                  {
+                    "option": "28"
+                  },
+                  {
+                    "option": "29"
+                  },
+                  {
+                    "option": "30"
+                  },
+                  {
+                    "option": "31"
+                  },
+                  {
+                    "option": "32"
+                  },
+                  {
+                    "option": "33"
+                  },
+                  {
+                    "option": "34"
+                  },
+                  {
+                    "option": "35"
+                  },
+                  {
+                    "option": "36"
+                  },
+                  {
+                    "option": "37"
+                  },
+                  {
+                    "option": "38"
+                  },
+                  {
+                    "option": "39"
+                  },
+                  {
+                    "option": "40"
+                  },
+                  {
+                    "option": "41"
+                  },
+                  {
+                    "option": "42"
+                  },
+                  {
+                    "option": "43"
+                  },
+                  {
+                    "option": "44"
+                  },
+                  {
+                    "option": "45"
+                  },
+                  {
+                    "option": "46"
+                  },
+                  {
+                    "option": "47"
+                  },
+                  {
+                    "option": "48"
+                  },
+                  {
+                    "option": "49"
+                  },
+                  {
+                    "option": "50"
+                  },
+                  {
+                    "option": "51"
+                  },
+                  {
+                    "option": "52"
+                  },
+                  {
+                    "option": "53"
+                  },
+                  {
+                    "option": "54"
+                  },
+                  {
+                    "option": "55"
+                  },
+                  {
+                    "option": "56"
+                  },
+                  {
+                    "option": "57"
+                  },
+                  {
+                    "option": "58"
+                  },
+                  {
+                    "option": "59"
+                  },
+                  {
+                    "option": "60"
+                  },
+                  {
+                    "option": "61"
+                  },
+                  {
+                    "option": "62"
+                  },
+                  {
+                    "option": "63"
+                  },
+                  {
+                    "option": "64"
+                  },
+                  {
+                    "option": "65"
+                  },
+                  {
+                    "option": "66"
+                  },
+                  {
+                    "option": "67"
+                  },
+                  {
+                    "option": "68"
+                  },
+                  {
+                    "option": "69"
+                  },
+                  {
+                    "option": "70"
+                  },
+                  {
+                    "option": "71"
+                  },
+                  {
+                    "option": "72"
+                  },
+                  {
+                    "option": "73"
+                  },
+                  {
+                    "option": "74"
+                  },
+                  {
+                    "option": "75"
+                  },
+                  {
+                    "option": "76"
+                  },
+                  {
+                    "option": "77"
+                  },
+                  {
+                    "option": "78"
+                  },
+                  {
+                    "option": "79"
+                  },
+                  {
+                    "option": "80"
+                  },
+                  {
+                    "option": "81"
+                  },
+                  {
+                    "option": "82"
+                  },
+                  {
+                    "option": "83"
+                  },
+                  {
+                    "option": "84"
+                  },
+                  {
+                    "option": "85"
+                  },
+                  {
+                    "option": "86"
+                  },
+                  {
+                    "option": "87"
+                  },
+                  {
+                    "option": "88"
+                  },
+                  {
+                    "option": "89"
+                  },
+                  {
+                    "option": "90"
+                  },
+                  {
+                    "option": "91"
+                  },
+                  {
+                    "option": "92"
+                  },
+                  {
+                    "option": "93"
+                  },
+                  {
+                    "option": "94"
+                  },
+                  {
+                    "option": "95"
+                  },
+                  {
+                    "option": "96"
+                  },
+                  {
+                    "option": "97"
+                  },
+                  {
+                    "option": "98"
+                  },
+                  {
+                    "option": "99"
+                  },
+                  {
+                    "option": "100"
+                  },
+                  {
+                    "option": "101"
+                  },
+                  {
+                    "option": "102"
+                  },
+                  {
+                    "option": "103"
+                  },
+                  {
+                    "option": "104"
+                  },
+                  {
+                    "option": "105"
+                  },
+                  {
+                    "option": "106"
+                  },
+                  {
+                    "option": "107"
+                  },
+                  {
+                    "option": "108"
+                  },
+                  {
+                    "option": "109"
+                  },
+                  {
+                    "option": "110"
+                  },
+                  {
+                    "option": "111"
+                  },
+                  {
+                    "option": "112"
+                  },
+                  {
+                    "option": "113"
+                  },
+                  {
+                    "option": "114"
+                  },
+                  {
+                    "option": "115"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Please enter your state"
+            },
+            {
+              "fieldLabel": "Please select your area of residence",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Urban"
+                  },
+                  {
+                    "option": "Rural"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "You belong to...",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "General"
+                  },
+                  {
+                    "option": "Other Backward Class (OBC)"
+                  },
+                  {
+                    "option": "Particularly Vulnerable Tribal Group (PVTG)"
+                  },
+                  {
+                    "option": "Scheduled Caste (SC)"
+                  },
+                  {
+                    "option": "Scheduled Tribe (ST)"
+                  },
+                  {
+                    "option": "De-Notified, Nomadic, and Semi-Nomadic (DNT) communities"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Do you identify as a person with a disability?",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Yes"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Do you belong to minority?",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Yes"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Are you a student?",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Yes"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "For receiving WhatsApp updates enter your WhatsApp number...",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "For receiving Email updates enter your Email id...",
+              "fieldType": "email"
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "customCss": "/* =========================================================================\n   SCHEMESETU — Government Eligibility Assessment Form\n   Custom CSS for n8n Form Trigger node (\"Custom Form Styling\" field)\n\n   HOW TO USE\n   1. Open your n8n Form Trigger node\n   2. Scroll to \"Custom CSS\" (Options)\n   3. Paste this entire file in\n   4. n8n's form reads the CSS custom properties below directly, so the\n      :root block alone will re-skin the whole form.\n   5. The rules under \"STRUCTURAL ENHANCEMENTS\" style native input types\n      (radio/checkbox) and add the tricolour + emblem — these use generic\n      selectors so they render correctly even though n8n doesn't expose\n      custom class hooks. If your n8n version wraps things differently,\n      open devtools and nudge the selectors marked ⚠️.\n   ========================================================================= */\n\n:root {\n\t/* =========================================================\n\t   SCHEMESETU — INDIAN GOVERNMENT / CITIZEN SERVICE THEME\n\t   (Dark \"digital gazette\" variant)\n\t   ========================================================= */\n\n\t/* ---- Typography ---- */\n\t--font-family: 'Inter', 'Open Sans', Arial, sans-serif;\n\t--font-family-display: 'Tiro Devanagari Hindi', 'Noto Serif', 'Georgia', serif;\n\t--font-weight-normal: 400;\n\t--font-weight-bold: 600;\n\t--font-size-body: 13px;\n\t--font-size-label: 12px;\n\t--font-size-test-notice: 12px;\n\t--font-size-input: 14px;\n\t--font-size-header: 26px;\n\t--font-size-paragraph: 14px;\n\t--font-size-link: 13px;\n\t--font-size-error: 12px;\n\t--font-size-html-h1: 30px;\n\t--font-size-html-h2: 22px;\n\t--font-size-html-h3: 18px;\n\t--font-size-html-h4: 15px;\n\t--font-size-html-h5: 13px;\n\t--font-size-html-h6: 11px;\n\t--font-size-subheader: 13px;\n\n\t/* =========================================================\n\t   NATIONAL / GOVERNMENT COLOUR PALETTE\n\t   ========================================================= */\n\t--color-saffron: #ff7a1a;\n\t--color-saffron-deep: #e35f00;\n\t--color-green: #1c8a3f;\n\t--color-white: #ffffff;\n\t--color-government-blue: #2f6fb0;\n\t--color-deep-blue: #16324f;\n\t--color-chakra-blue: #3a6ea5;\n\n\t/* ---- Page ---- */\n\t--color-background: #120d0a;\n\t--color-background-pattern: #1a130e;\n\n\t/* ---- Header / Text ---- */\n\t--color-header: #f7ede1;\n\t--color-label: #c9b8a4;\n\t--color-html-text: #e7dccc;\n\t--color-header-subtext: #9c8a76;\n\n\t/* ---- Links ---- */\n\t--color-link: #ff9a45;\n\t--color-html-link: #ff9a45;\n\n\t/* ---- Cards ---- */\n\t--color-card-bg: #1c140f;\n\t--color-card-border: #3a2a1e;\n\t--color-card-shadow: rgba(0, 0, 0, 0.45);\n\n\t/* ---- Inputs ---- */\n\t--color-input-bg: #241a13;\n\t--color-input-border: #493525;\n\t--color-input-text: #f3e9dc;\n\t--color-focus-border: #ff7a1a;\n\n\t/* ---- Submit ---- */\n\t--color-submit-btn-bg: linear-gradient(135deg, #ff9a45 0%, #e35f00 100%);\n\t--color-submit-btn-text: #1a1006;\n\n\t/* ---- Clear ---- */\n\t--color-clear-button-bg: #493525;\n\n\t/* ---- Validation ---- */\n\t--color-error: #ff6b6b;\n\t--color-required: #ff7a1a;\n\n\t/* ---- Information / Notice ---- */\n\t--color-test-notice-text: #f0c98a;\n\t--color-test-notice-bg: #2a2013;\n\t--color-test-notice-border: #6b4d1e;\n\n\t/* =========================================================\n\t   BORDER RADII — restrained, official\n\t   ========================================================= */\n\t--border-radius-card: 14px;\n\t--border-radius-input: 8px;\n\t--border-radius-clear-btn: 50%;\n\t--card-border-radius: 14px;\n\n\t/* =========================================================\n\t   SPACING\n\t   ========================================================= */\n\t--padding-container-top: 36px;\n\t--padding-card: 30px;\n\t--card-padding: 30px;\n\t--padding-test-notice-vertical: 12px;\n\t--padding-test-notice-horizontal: 18px;\n\t--margin-bottom-card: 22px;\n\t--card-margin-bottom: 22px;\n\t--padding-form-input: 13px;\n\n\t/* =========================================================\n\t   DIMENSIONS\n\t   ========================================================= */\n\t--container-width: 540px;\n\t--submit-btn-height: 52px;\n\t--checkbox-size: 18px;\n\n\t/* =========================================================\n\t   SHADOW\n\t   ========================================================= */\n\t--box-shadow-card:\n\t\t0 1px 0 rgba(255, 255, 255, 0.03) inset,\n\t\t0 20px 45px rgba(0, 0, 0, 0.5);\n\t--opacity-placeholder: 0.45;\n}\n\n/* =========================================================================\n   STRUCTURAL ENHANCEMENTS\n   Generic-selector rules that don't depend on n8n's internal class names.\n   ========================================================================= */\n\n/* Page backdrop: warm charcoal with a very faint Ashoka-chakra watermark */\nbody {\n\tbackground-color: var(--color-background) !important;\n\tbackground-image:\n\t\tradial-gradient(circle at 50% -10%, rgba(255, 122, 26, 0.06), transparent 55%),\n\t\trepeating-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 60px);\n}\n\n/* Card: tricolour thread across the top edge, like a letterhead ribbon */\n.n8n-form,\n.form-container,\nmain form,\n[class*=\"container\"] > form {\n\tposition: relative;\n}\n\n.n8n-form::before,\n.form-container::before,\n[class*=\"card\"]::before {\n\tcontent: \"\";\n\tdisplay: block;\n\theight: 4px;\n\twidth: 100%;\n\tbackground: linear-gradient(\n\t\t90deg,\n\t\tvar(--color-saffron) 0%,\n\t\tvar(--color-saffron) 32%,\n\t\tvar(--color-white) 32%,\n\t\tvar(--color-white) 68%,\n\t\tvar(--color-green) 68%,\n\t\tvar(--color-green) 100%\n\t);\n\tborder-radius: var(--card-border-radius) var(--card-border-radius) 0 0;\n\tmargin: -1px -1px 0 -1px;\n}\n\n/* Form title in the display face, with a small chakra emblem beside it */\n.n8n-form h1,\n.form-title,\nh1 {\n\tfont-family: var(--font-family-display) !important;\n\tletter-spacing: 0.2px;\n\tposition: relative;\n\tpadding-left: 34px;\n}\n\n.n8n-form h1::before,\n.form-title::before,\nh1::before {\n\tcontent: \"\";\n\tposition: absolute;\n\tleft: 0;\n\ttop: 50%;\n\ttransform: translateY(-50%);\n\twidth: 26px;\n\theight: 26px;\n\tborder-radius: 50%;\n\tbackground: var(--color-chakra-blue);\n\tbackground-image:\n\t\trepeating-conic-gradient(\n\t\t\tfrom 0deg,\n\t\t\t#1c140f 0deg 7.5deg,\n\t\t\tvar(--color-chakra-blue) 7.5deg 15deg\n\t\t);\n\tbox-shadow: 0 0 0 2px var(--color-chakra-blue) inset;\n}\n\n/* Section headings (\"1. Personal Demographics\" etc.) — official red-orange,\n   with a hairline rule that reads like a gazette divider */\n.form-section-title,\n[class*=\"section-title\"],\nh2, h3 {\n\tcolor: var(--color-saffron) !important;\n\ttext-transform: uppercase;\n\tfont-size: 13px;\n\tfont-weight: var(--font-weight-bold);\n\tletter-spacing: 0.6px;\n\tborder-bottom: 1px solid var(--color-card-border);\n\tpadding-bottom: 10px;\n\tmargin-top: 6px !important;\n}\n\n/* Labels: small caps, muted warm grey, official form-tag feel */\nlabel,\n.parameter-label,\n[class*=\"label\"] {\n\ttext-transform: uppercase;\n\tletter-spacing: 0.5px;\n\tfont-weight: var(--font-weight-bold);\n\tcolor: var(--color-label) !important;\n}\n\n/* Text / number inputs, textareas, selects */\ninput[type=\"text\"],\ninput[type=\"number\"],\ninput[type=\"email\"],\ninput[type=\"tel\"],\ntextarea,\nselect {\n\tbackground-color: var(--color-input-bg) !important;\n\tborder: 1px solid var(--color-input-border) !important;\n\tcolor: var(--color-input-text) !important;\n\tborder-radius: var(--border-radius-input) !important;\n\ttransition: border-color 0.15s ease, box-shadow 0.15s ease;\n}\n\ninput:focus,\nselect:focus,\ntextarea:focus {\n\tborder-color: var(--color-focus-border) !important;\n\tbox-shadow: 0 0 0 3px rgba(255, 122, 26, 0.18) !important;\n\toutline: none !important;\n}\n\n/* ⚠️ Pill-style choice groups (Gender / Area Type / any radio group).\n   n8n renders radio options as a list of label+input pairs — this turns\n   each option into a bordered pill and highlights the checked one, the\n   same pattern as the reference screenshot. */\n.parameter-input-radio-container,\n[class*=\"radio-container\"],\n[class*=\"radio-input-container\"] {\n\tdisplay: flex;\n\tgap: 10px;\n}\n\n.parameter-input-radio-container label,\n[class*=\"radio-container\"] label,\n[class*=\"radio-input-container\"] label {\n\tflex: 1;\n\ttext-align: center;\n\tpadding: 13px 10px;\n\tborder: 1.5px solid var(--color-input-border);\n\tborder-radius: var(--border-radius-input);\n\tbackground-color: var(--color-input-bg);\n\tcolor: var(--color-html-text);\n\tcursor: pointer;\n\ttext-transform: none;\n\tletter-spacing: 0;\n\tfont-weight: var(--font-weight-normal);\n\ttransition: all 0.15s ease;\n}\n\n.parameter-input-radio-container input:checked + label,\n[class*=\"radio-container\"] input:checked + label,\n[class*=\"radio-input-container\"] input:checked + label {\n\tborder-color: var(--color-saffron) !important;\n\tcolor: var(--color-saffron) !important;\n\tbackground-color: rgba(255, 122, 26, 0.08) !important;\n\tfont-weight: var(--font-weight-bold);\n}\n\n/* Native radio/checkbox dots recoloured to saffron when checked */\ninput[type=\"radio\"],\ninput[type=\"checkbox\"] {\n\taccent-color: var(--color-saffron);\n\twidth: var(--checkbox-size);\n\theight: var(--checkbox-size);\n}\n\n/* Consent / declaration notice strip (matches the \"I agree...\" row) */\n.notice, .test-notice, [class*=\"notice\"] {\n\tbackground-color: var(--color-test-notice-bg) !important;\n\tborder: 1px solid var(--color-test-notice-border) !important;\n\tcolor: var(--color-test-notice-text) !important;\n\tborder-radius: var(--border-radius-input);\n}\n\n/* Submit button — solid saffron gradient, small arrow cue, letterhead weight */\nbutton[type=\"submit\"],\n.submit-button,\n[class*=\"submit\"] button {\n\tbackground: var(--color-submit-btn-bg) !important;\n\tcolor: var(--color-submit-btn-text) !important;\n\tfont-weight: 700 !important;\n\tletter-spacing: 0.3px;\n\ttext-transform: uppercase;\n\tfont-size: 13px;\n\tborder: none !important;\n\tborder-radius: var(--border-radius-input) !important;\n\tbox-shadow: 0 10px 24px rgba(255, 122, 26, 0.28);\n\ttransition: transform 0.12s ease, box-shadow 0.12s ease;\n}\n\nbutton[type=\"submit\"]:hover,\n.submit-button:hover,\n[class*=\"submit\"] button:hover {\n\ttransform: translateY(-1px);\n\tbox-shadow: 0 14px 30px rgba(255, 122, 26, 0.36);\n}\n\n/* Small print / footer trust line under the button, if n8n renders one */\n.n8n-powered-by, [class*=\"powered-by\"] {\n\tcolor: var(--color-header-subtext) !important;\n\topacity: 0.7;\n}"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        -2192,
+        1104
+      ],
+      "id": "c3b4a0a3-910e-4f08-b003-baadeaca7e13",
+      "name": "SchemeSetuForm",
+      "webhookId": "dbc72d41-fa7c-45cc-9b10-a21491bbef74"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8",
+          "mode": "list",
+          "cachedResultName": "Government-Schemes-QAURL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1963442408,
+          "mode": "list",
+          "cachedResultName": "Health",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1w6j3MXi0xcHsRqSNK7Oyg9iP5ZgVNuaeVy27MPwNPj8/edit#gid=1963442408"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -1072,
+        1328
+      ],
+      "id": "66970b77-89ba-42ce-ab5e-efe87e1f8057",
+      "name": "Health1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Your Google Sheets OAuth2 credential ID here",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('SchemeSetuForm').item.json['For receiving Email updates enter your Email id...'] }}",
+        "subject": "=SchemeSetu - Schemes update for you!",
+        "emailType": "text",
+        "message": "={{ $json.output }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -800,
+        1296
+      ],
+      "id": "057e582d-e453-4dc0-9d2f-8eb523a4f8f6",
+      "name": "Send Schemes via Email",
+      "webhookId": "55559aa7-0b45-43c9-b436-60d7c7337ddb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YTNnGGc1BDdr5RxW",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "40384c51-a347-4bd6-83b8-b39bc352db44",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -2192,
+        592
+      ],
+      "id": "001b56f3-078d-4e26-ba3d-25abdc0a2707",
+      "name": "Webhook",
+      "webhookId": "40384c51-a347-4bd6-83b8-b39bc352db44"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.chakrahq.com/v1/ext/plugin/whatsapp/c29c4583-24bd-4248-9912-6aedd3cdf91b/api/v24.0/1223978697474489/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer <T24..... Your Bearer Token -- --- >"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $('Webhook').item.json.body.entry[0].changes[0].value.messages[0].from }}\",\n  \"type\": \"text\",\n  \"text\": {\n    \"body\": {{ JSON.stringify($json.output || \"\") }}\n  }\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -608,
+        592
+      ],
+      "id": "ca1adaab-7a5b-466d-aa77-e3b05290c218",
+      "name": "HTTP Request",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.chakrahq.com/v1/ext/plugin/whatsapp/c29c4583-24bd-4248-9912-6aedd3cdf91b/api/v24.0/1223978697474489/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer <T24..... Your Bearer Token -- --- >"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"91{{ $('SchemeSetuForm').item.json['For receiving WhatsApp updates enter your WhatsApp number...'] }}\",\n  \"type\": \"text\",\n  \"text\": {\n    \"body\": {{ JSON.stringify($json.output || \"\") }}\n  }\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -800,
+        912
+      ],
+      "id": "6c91fc0c-70df-46db-a409-35325a19998d",
+      "name": "Send Scheme via WhatsApp"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.1-flash-lite",
+        "options": {
+          "maxOutputTokens": 128
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1968,
+        704
+      ],
+      "id": "6a95c601-7b56-4836-9de1-23528ba6074a",
+      "name": "GGCM1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "0wz5RGixHEY24XRd",
+          "name": "Satvik-Singhal-Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.1-flash-lite",
+        "options": {
+          "maxOutputTokens": 128
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1840,
+        704
+      ],
+      "id": "40a29dda-17b9-493b-9381-3784608a20ad",
+      "name": "GGCFBM1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "0Pc7V9roiw6P6YJi",
+          "name": "DMBMS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.1-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1968,
+        1328
+      ],
+      "id": "87fb5ad5-5894-4b59-97ff-272c49be740f",
+      "name": "GGCM2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wS38q9ouLLtesdMC",
+          "name": "BGMI WALA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.1-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1840,
+        1328
+      ],
+      "id": "9fa29c24-ddaf-4f99-ac2c-79536678fe79",
+      "name": "GGCFBM2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Ulll6EvbaVEYYO2q",
+          "name": "KobyAIAssistant-Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "Your Scheme Matches Are Ready",
+        "completionMessage": "={{ $json.html }} ",
+        "options": {
+          "customCss": "/* =========================================================================\n   SCHEMESETU — Completion Screen — v3\n   Paste into: Form Trigger node → On n8n Form Submission →\n   Show Completion Screen → Options → Custom Form Styling\n\n   KEY FIX: colour is now set on the CARD CONTAINER ITSELF, not on the\n   inner tags. That way, even if n8n's sanitizer strips a tag (like it\n   did to your <h3>/<div>), whatever text is left behind still inherits\n   light text colour instead of falling back to default black.\n   Also forces left alignment everywhere — no more centred wall of text.\n   ========================================================================= */\n\n:root {\n\t--font-family: 'Inter', 'Open Sans', Arial, sans-serif;\n\t--font-family-display: 'Tiro Devanagari Hindi', 'Noto Serif', 'Georgia', serif;\n\t--color-saffron: #ff7a1a;\n\t--color-green: #1c8a3f;\n\t--color-white: #ffffff;\n\t--color-chakra-blue: #3a6ea5;\n\t--color-background: #120d0a;\n\t--color-header: #f7ede1;\n\t--color-html-text: #e7dccc;\n\t--color-header-subtext: #9c8a76;\n\t--color-html-link: #ff9a45;\n\t--card-border-radius: 14px;\n}\n\nbody {\n\tbackground-color: var(--color-background) !important;\n\tbackground-image: radial-gradient(circle at 50% -10%, rgba(255, 122, 26, 0.06), transparent 55%);\n}\n\n[class*=\"container\"],\n[class*=\"card\"],\nmain {\n\tbackground-color: var(--color-background) !important;\n}\n\n/* The card that wraps the whole completion message.\n   color is set HERE so any surviving/unwrapped text inherits it —\n   this is the fix for the black scheme-name text. */\n[class*=\"container\"] > div,\n[class*=\"card\"] {\n\tbackground-color: #1c140f !important;\n\tborder: 1px solid #3a2a1e !important;\n\tborder-radius: var(--card-border-radius) !important;\n\tcolor: var(--color-html-text) !important;\n\tposition: relative;\n}\n\n[class*=\"container\"] > div::before,\n[class*=\"card\"]::before {\n\tcontent: \"\";\n\tdisplay: block;\n\theight: 4px;\n\twidth: 100%;\n\tbackground: linear-gradient(90deg,\n\t\tvar(--color-saffron) 0%, var(--color-saffron) 32%,\n\t\tvar(--color-white) 32%, var(--color-white) 68%,\n\t\tvar(--color-green) 68%, var(--color-green) 100%);\n\tborder-radius: var(--card-border-radius) var(--card-border-radius) 0 0;\n\tmargin: -1px -1px 0 -1px;\n}\n\n/* Title, chakra beside it (unchanged from last fix — this part worked) */\nh1 {\n\tfont-family: var(--font-family-display) !important;\n\tcolor: var(--color-header) !important;\n\tdisplay: flex !important;\n\talign-items: center;\n\tjustify-content: center;\n\tgap: 10px;\n\ttext-align: center;\n}\nh1::before {\n\tcontent: \"\";\n\tdisplay: block;\n\twidth: 22px;\n\theight: 22px;\n\tflex-shrink: 0;\n\tborder-radius: 50%;\n\tbackground-image: repeating-conic-gradient(from 0deg, #1c140f 0deg 7.5deg, var(--color-chakra-blue) 7.5deg 15deg);\n\tbox-shadow: 0 0 0 2px var(--color-chakra-blue) inset;\n}\n\n/* Force LEFT alignment on every text-bearing tag — kills the\n   centred zig-zag wall of text */\np, li, span, strong, b {\n\ttext-align: left !important;\n\tcolor: var(--color-html-text) !important;\n}\n\n/* Scheme name — the <strong> tag */\nstrong {\n\tdisplay: block;\n\tcolor: var(--color-header) !important;\n\tfont-size: 15.5px;\n\tmargin-top: 4px;\n}\n\n/* Field labels — the <b> tags (\"Why it matches\", \"Benefit\"...) */\nb {\n\tcolor: var(--color-label, #c9b8a4) !important;\n\ttext-transform: uppercase;\n\tfont-size: 10.5px;\n\tletter-spacing: 0.4px;\n\tdisplay: block;\n\tmargin-bottom: 2px;\n\tmargin-top: 8px;\n}\n\n/* Divider between schemes — replaces the missing card border */\nhr {\n\tborder: none;\n\tborder-top: 1px solid #3a2a1e;\n\tmargin: 18px 0 14px;\n}\nhr:first-of-type { margin-top: 20px; }\n\n/* Links — including the Apply Now line */\na, a:visited {\n\tcolor: var(--color-html-link) !important;\n\ttext-decoration: none;\n\tfont-weight: 700;\n\tborder-bottom: 1px solid rgba(255, 154, 69, 0.4);\n}\na:hover { border-bottom-color: var(--color-html-link); }"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        -288,
+        1104
+      ],
+      "id": "87c20887-70dc-4f92-87bd-259d4b20c514",
+      "name": "SchemeSetuSubmission",
+      "webhookId": "74c28a87-cc9a-478c-b257-7c4bf0d2b46e",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.1-flash-lite",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.1-flash-lite"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Convert the scheme-matching result into a clean, user-friendly completion message.\n\nRules:\n- Do not change, add, or remove any scheme information.\n- Keep only schemes that were found by the Scheme Matcher.\n- Use plain text only.\n- Do not use Markdown symbols such as #, *, **, ###, or [links](...).\n- Use clear headings and spacing.\n- For each scheme use:\n  1. Scheme Name\n     Why it matches:\n     Benefit:\n     Eligibility:\n     Status:\n     Apply:\n- Keep the response concise.\n- Start with: \"Here are your best matching government schemes:\"\n- End with: \"Please verify eligibility on the official scheme website before applying.\"\n\nInput:\n{{ $json.output }}"
+            }
+          ]
+        },
+        "simplify": false,
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        1104
+      ],
+      "id": "2dc41297-a859-4d20-bfd5-e236859666cb",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "0wz5RGixHEY24XRd",
+          "name": "Satvik-Singhal-Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// ============================================================================\n// n8n CODE NODE — \"Formatter\" — v4\n// FIX: v3 assumed every scheme starts with \"1. \", \"2. \" etc. This run the\n// model skipped numbering entirely, so the split found nothing and the\n// whole response fell through as one unformatted paragraph.\n// v4 no longer depends on numbering at all — it anchors on the field\n// labels (\"Why it matches:\", \"Benefit:\", \"Eligibility:\", \"Status:\",\n// \"Apply:\"), which have stayed consistent across both of your runs.\n// ============================================================================\n\nconst raw = $input.first().json.candidates[0].content.parts[0].text;\n\nconst firstIdx = raw.indexOf('Why it matches:');\n\n// Everything before the first \"Why it matches:\" is intro text + the\n// first scheme's name run together. Split on a blank line to separate\n// them; if there's no blank line, treat it all as the name.\nlet intro = '';\nlet workingText = raw;\n\nif (firstIdx !== -1) {\n\tconst preBlock = raw.slice(0, firstIdx).trim();\n\tconst parts = preBlock.split(/\\n\\s*\\n/);\n\tlet firstName;\n\tif (parts.length > 1) {\n\t\tintro = parts.slice(0, -1).join(' ').trim();\n\t\tfirstName = parts[parts.length - 1].trim();\n\t} else {\n\t\tfirstName = preBlock;\n\t}\n\tworkingText = firstName + '\\n' + raw.slice(firstIdx);\n}\n\nfunction escapeHtml(str) {\n\treturn str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');\n}\n\n// Anchor-based extraction: each match consumes one full scheme entry and\n// the next exec() call picks up right where the last one left off, so\n// this works whether or not entries are numbered.\nconst re = /([\\s\\S]*?)Why it matches:\\s*([\\s\\S]*?)Benefit:\\s*([\\s\\S]*?)Eligibility:\\s*([\\s\\S]*?)Status:\\s*([\\s\\S]*?)Apply:\\s*(\\S+)/g;\n\nlet match;\nlet i = 0;\nlet cardsHtml = '';\n\nwhile ((match = re.exec(workingText)) !== null) {\n\ti++;\n\tconst name = escapeHtml(match[1].trim().replace(/^\\d+\\.\\s*/, '')); // strip a leading number if present\n\tconst why = escapeHtml(match[2].trim());\n\tconst benefit = escapeHtml(match[3].trim());\n\tconst eligibility = escapeHtml(match[4].trim());\n\tconst status = escapeHtml(match[5].trim());\n\tconst applyUrl = match[6];\n\tconst emoji = /strong/i.test(status) ? '🟢' : '🟡';\n\n\tcardsHtml += `\n<hr>\n<p><strong>${i}. ${name}</strong></p>\n<p><b>Why it matches</b> ${why}</p>\n<p><b>Benefit</b> ${benefit}</p>\n<p><b>Eligibility</b> ${eligibility}</p>\n<p>${emoji} ${status}</p>\n<p><a href=\"${applyUrl}\" target=\"_blank\" rel=\"noopener\">Apply Now →</a></p>`;\n}\n\n// Anything left after the last match (e.g. a closing \"Please verify\n// eligibility...\" note) gets appended as a plain closing line.\nconst leftover = workingText.slice(re.lastIndex).trim();\n\n// Fallback: if the anchor regex found nothing at all (fields missing or\n// completely different format), at least show the raw text instead of\n// silently returning blank.\nconst html = i > 0\n\t? `<p>${escapeHtml(intro)}</p>\\n${cardsHtml}${leftover ? `\\n<p><i>${escapeHtml(leftover)}</i></p>` : ''}`\n\t: `<p>${escapeHtml(raw)}</p>`;\n\nreturn [{\n\tjson: {\n\t\thtml: html\n\t}\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -512,
+        1104
+      ],
+      "id": "7f4ea81e-0083-4e52-8d01-27b63d40c068",
+      "name": "Formatter"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Women & Child": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agriculture": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Health": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Employment": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Education": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rural Development": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finance": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Employment1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Scheme Matcher",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Women & Child1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Scheme Matcher",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agriculture1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Scheme Matcher",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Education1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Scheme Matcher",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rural Development1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Scheme Matcher",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scheme Matcher": {
+      "main": [
+        [
+          {
+            "node": "Send Schemes via Email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Scheme via WhatsApp",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SchemeSetuForm": {
+      "main": [
+        [
+          {
+            "node": "Scheme Matcher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Health1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Scheme Matcher",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GGCM1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GGCFBM1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "GGCM2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Scheme Matcher",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GGCFBM2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Scheme Matcher",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatter": {
+      "main": [
+        [
+          {
+            "node": "SchemeSetuSubmission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "d8fa01de-a882-4542-b3af-7703040a9486",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8742dd433c6d459099010ea017a09f72abf845148f11eb17c7c3c57d73ea1096"
+  },
+  "id": "I6EA97PYBTYLtmTm",
+  "tags": []
+}
