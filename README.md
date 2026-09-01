@@ -46,12 +46,10 @@ SchemeSetu aims to make scheme discovery easier by using information provided by
 
 | Component | Technology |
 |---|---|
-| Frontend | React, TypeScript, Vite |
-| UI | Tailwind CSS, Lucide React, Motion |
+| Frontend | HTML, CSS, JS, TypeScript, Vite |
 | AI | Google Gemini API |
-| Automation | n8n |
-| Backend | Node.js, Express.js |
-| Data | Structured Government Scheme Data |
+| Backend-Automation | n8n |
+| Data | Structured Government Scheme Dataset from Kaggle |
 
 ## 🔄 Workflow
 
