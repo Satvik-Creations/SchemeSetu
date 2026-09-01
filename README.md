@@ -61,38 +61,6 @@ SchemeSetu aims to make scheme discovery easier by using information provided by
 
 `Citizen Input → Web Application → n8n Automation → AI Processing → Scheme Matching → Citizen Response`
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js
-- npm
-- Google Gemini API Key
-- n8n (if reproducing the complete automation workflow)
-
-### Installation
-
-```bash
-git clone https://github.com/Satvik-Creations/SchemeSetu.git
-cd SchemeSetu
-npm install
-```
-
-Create a `.env` file using `.env.example` and configure the required environment variables.
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
-Build the project:
-
-```bash
-npm run build
-```
-
-> **Security:** Never commit API keys, credentials, webhook secrets, or other sensitive information to the repository.
 
 ## 👨‍💻 Team AutoNova
 
