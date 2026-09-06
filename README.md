@@ -70,8 +70,8 @@ SchemeSetu aims to make scheme discovery easier by using information provided by
 
 | Team Member | Contribution |
 |---|---|
-| **Shivam Kumar** | Team Leader |
-| **Satvik Singhal** | Developer |
+| **Shivam Kumar** | Team Leader (Frontend Developer) |
+| **Satvik Singhal** | Backend (Automation Developer) |
 | **Saumya Sharma** | Idea Pitching |
 | **Harshit Bania** | Data Categorization & SIH PowerPoint Presentation Builder |
 | **Ritika** | Idea Provider — Originator of the core idea |
