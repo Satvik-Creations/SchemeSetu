@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <a href="https://satvik-creations.github.io/SchemeSetu/">Live Prototype</a> •
+  <a href="https://satvik-creations.github.io/SchemeSetu/">Click to Launch Live Prototype</a> •
   <a href="https://github.com/Satvik-Creations/SchemeSetu">Source Code</a>
 </p>
 
