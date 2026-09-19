@@ -24,7 +24,7 @@ This achievement marks an important milestone in our journey with **SchemeSetu**
 ## 👨‍💻 Team AutoNova
 
 <p align="center">
-  <img src="assets/autonova_logo.png" alt="Team AutoNova" width="200">
+  <img src="/SchemeSetu/assets/autonova_logo.png" alt="Team AutoNova" width="200">
 </p>
 
 | Team Member | Contribution |
