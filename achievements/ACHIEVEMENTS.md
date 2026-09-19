@@ -21,7 +21,22 @@ Our team successfully cleared the internal selection process and earned a place 
 
 This achievement marks an important milestone in our journey with **SchemeSetu**, our platform designed to help citizens discover and access relevant government schemes more easily.
 
-### 👨‍💻 Team Autonova
+## 👨‍💻 Team AutoNova
+
+<p align="center">
+  <img src="assets/autonova_logo.png" alt="Team AutoNova" width="200">
+</p>
+
+| Team Member | Contribution |
+|---|---|
+| **Shivam Kumar** | Team Leader (Frontend Developer) |
+| **Satvik Singhal** | Backend (Automation Developer) |
+| **Saumya Sharma** | Idea Pitching |
+| **Harshit Bania** | Data Categorization & SIH PowerPoint Presentation Builder |
+| **Ritika** | Idea Provider — Originator of the core idea |
+| **Abhishek Kumar** | Data Categorization & Excel Sheet Data Management |
+
+All team members are students of **Inderprastha Engineering College, Ghaziabad**.
 
 We are grateful to everyone who contributed to the development, ideation, presentation, and refinement of the project.
 
