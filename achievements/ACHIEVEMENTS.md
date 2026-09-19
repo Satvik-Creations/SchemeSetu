@@ -31,6 +31,6 @@ We are grateful to everyone who contributed to the development, ideation, presen
 
 ### 📸 Selection Announcement
 
-![Autonova Selected for SIH 2026](../Autonova-got-selected.png)
+![Autonova Selected for SIH 2026](achievements/Autonova-got-selected.png)
 
 **Proud to be a part of SIH 2026.**
